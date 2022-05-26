@@ -25,7 +25,7 @@ import save from './save';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-registerBlockType('create-block/youtube-video-background', {
+registerBlockType('create-block/video-background', {
 	/**
 	 * @see ./edit.js
 	 */

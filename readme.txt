@@ -17,7 +17,7 @@ This plugin adds a Gutenberg block container to your site so that you can add Yo
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/youtube-video-background` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/video-background` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 
 
