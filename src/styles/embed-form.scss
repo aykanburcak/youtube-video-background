@@ -1,0 +1,31 @@
+.embed-form {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 24px;
+  background-color: #fff;
+  font-size: 13px;
+  position: relative;
+  z-index: 2;
+}
+
+.embed-form__title {
+  font-weight: 500;
+}
+
+.embed-form__description {
+  margin-bottom: 12px;
+}
+
+.embed-form__input {
+  min-width: 320px;
+  margin-right: 6px;
+}
+
+.embed-form__button {
+  background-color: var(--wp-admin-theme-color);
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  height: 30px;
+  padding: 0 12px;
+}

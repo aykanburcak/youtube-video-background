@@ -3,7 +3,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
-import { __ } from '@wordpress/i18n';
+import {__} from '@wordpress/i18n';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -11,10 +11,12 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
-import { useBlockProps } from '@wordpress/block-editor';
-
-import { InnerBlocks } from '@wordpress/editor';
-import { EmbedForm } from "./components/EmbedForm";
+import {useBlockProps, BlockControls} from '@wordpress/block-editor';
+import {InnerBlocks} from '@wordpress/editor';
+import {ToolbarGroup, ToolbarButton} from '@wordpress/components';
+import {useState} from '@wordpress/element';
+import {EmbedForm} from "./components/EmbedForm";
+import {edit} from '@wordpress/icons';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -23,6 +25,7 @@ import { EmbedForm } from "./components/EmbedForm";
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import {BackgroundVideo} from "./components/BackgroundVideo";
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -30,20 +33,41 @@ import './editor.scss';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
  *
- * @return {WPElement} Element to render.
+ * @return {JSX.Element} Element to render.
  */
-export default function Edit() {
+export default function Edit({attributes, setAttributes}) {
+	const blockProps = useBlockProps();
+	const [editMode, setEditMode] = useState(false);
 
-	function onEmbed(e) {
-		console.log(e);
+	const onEmbed = (videoUrl) => {
+		setAttributes({videoUrl})
+		setEditMode(false)
 	}
 
 	return (
-		<div {...useBlockProps()}>
-			<EmbedForm onEmbed={onEmbed} />
-			{
+		<>
+			<BlockControls>
+				<ToolbarGroup>
+					{(!editMode && attributes?.videoUrl) && (
+						<ToolbarButton
+							icon={edit}
+							label="Edit"
+							onClick={() => setEditMode(true)}
+						/>
+					)}
+				</ToolbarGroup>
+			</BlockControls>
+			<div {...blockProps}>
+				{(editMode || !attributes?.videoUrl) && (
+					<>
+						<EmbedForm onEmbed={onEmbed} value={attributes?.videoUrl}/>
+					</>
+				)}
+				{attributes.videoUrl && (
+					<BackgroundVideo videoId={attributes?.videoUrl}/>
+				)}
 				<InnerBlocks/>
-			}
-		</div>
+			</div>
+		</>
 	);
 }

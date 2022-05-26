@@ -9,7 +9,13 @@
 	"description": "Show a YouTube video as a background",
   	"keywords": [ "youtube", "video", "background" ],
 	"supports": {
-		"html": false
+		"html": false,
+	  	"align": true
+	},
+	"attributes": {
+	  "videoUrl": {
+		"type": "string"
+	  }
 	},
 	"textdomain": "youtube-video-background",
 	"editorScript": "file:./index.js",

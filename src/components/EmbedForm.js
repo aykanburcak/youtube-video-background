@@ -1,13 +1,11 @@
 import {__} from '@wordpress/i18n';
 import {useState} from '@wordpress/element';
 
-export function EmbedForm(props) {
-	const {onEmbed} = props;
-	const [videoUrl, setVideoUrl] = useState('');
+export function EmbedForm({onEmbed, value}) {
+	const [videoUrl, setVideoUrl] = useState(value);
 
 	function onSubmit(e) {
 		e.preventDefault();
-		console.log(videoUrl);
 		onEmbed(videoUrl);
 	}
 
